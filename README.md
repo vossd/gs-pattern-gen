@@ -1,4 +1,4 @@
-##Chromatic mediant pattern generator
+## Chromatic mediant pattern generator
 
 This toy "improvises" a few choruses each on John Coltrane's "Giant Steps" and "Countdown". 
 
