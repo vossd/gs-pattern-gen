@@ -9,14 +9,14 @@
 (def eb-maj [:Eb4 :F4 :G4 :Bb3])
 (def bb-maj [:Bb3 :C4 :D4 :F4])
 (def ab-maj [:Ab4 :Bb4 :C4 :Eb4])
-(def f#-maj [:F#4 :G#4 :A#4 :C#4])
+(def fis-maj [:F#4 :G#4 :A#4 :C#4])
 (def e-maj [:E4 :F#4 :G#4 :B3])
 (def d-maj [:D4 :E4 :F#4 :A4])
 (def c-maj [:C4 :D4 :E4 :G4])
 
 (def d-dom [:D4 :E4 :F#4 :A4 :C4])
 (def bb-dom [:Bb3 :C4 :D4 :F4 :Ab4])
-(def f#-dom [:F#4 :G#4 :A#3 :C#4 :E4])
+(def fis-dom [:F#4 :G#4 :A#3 :C#4 :E4])
 (def f-dom [:F4 :G4 :A4 :C4 :Eb4])
 (def eb-dom [:Eb4 :F4 :G4 :Bb4 :Db4])
 (def db-dom [:Db4 :Eb4 :F4 :Ab4 :B3])
@@ -26,7 +26,7 @@
 
 (def a-min7 [:A3 :C4 :E4 :G4])
 (def f-min7 [:F4 :Ab4 :C4 :Eb4])
-(def c#-min7 [:C#4 :E4 :G#4 :B3])
+(def cis-min7 [:C#4 :E4 :G#4 :B3])
 
 (def eb-maj7 [:Eb4 :F4 :G4 :Bb3 :C4 :D4])
 (def b-maj7 [:B3 :C#4 :D#4 :F#4 :G#4 :A#4])
@@ -73,7 +73,7 @@
                                                 (create-from-tetrad g-maj)
                                                 (create-from-pentad bb-dom)
                                                 (create-from-tetrad eb-maj)
-                                                (create-from-pentad f#-dom)
+                                                (create-from-pentad fis-dom)
                                                 (create-from-tetrad b-maj)
                                                 (create-from-hexad b-maj7)
                                                 (create-from-tetrad f-min7)
@@ -84,16 +84,16 @@
                                                 (create-from-pentad d-dom)
                                                 (create-from-tetrad g-maj)
                                                 (create-from-pentad g-maj7)
-                                                (create-from-tetrad c#-min7)
-                                                (create-from-pentad f#-dom)
+                                                (create-from-tetrad cis-min7)
+                                                (create-from-pentad fis-dom)
                                                 (create-from-tetrad b-maj)
                                                 (create-from-pentad b-maj7)
                                                 (create-from-tetrad f-min7)
                                                 (create-from-pentad bb-dom)
                                                 (create-from-tetrad eb-maj)
                                                 (create-from-pentad eb-maj7)
-                                                (create-from-tetrad c#-min7)
-                                                (create-from-pentad f#-dom))))))]
+                                                (create-from-tetrad cis-min7)
+                                                (create-from-pentad fis-dom))))))]
     gs-group))
 
 
@@ -105,7 +105,7 @@
                                                 (create-from-pentad f-dom)
                                                 (create-from-tetrad bb-maj)
                                                 (create-from-pentad db-dom)
-                                                (create-from-tetrad f#-maj)
+                                                (create-from-tetrad fis-maj)
                                                 (create-from-pentad a-dom)
                                                 (create-from-tetrad d-maj)
                                                 (create-from-hexad d-maj7)
@@ -119,7 +119,7 @@
                                                 (create-from-hexad c-maj7)
                                                 (create-from-tetrad c-min)
                                                 (create-from-pentad db-dom)
-                                                (create-from-tetrad f#-maj)
+                                                (create-from-tetrad fis-maj)
                                                 (create-from-pentad a-dom)
                                                 (create-from-tetrad d-maj)
                                                 (create-from-pentad f-dom)
@@ -140,12 +140,12 @@
                      "B1" "D2" "G2" "Bb2" "Eb2" "Eb3" "A2" "D2"
                      "G2" "Bb2" "Eb2" "F#2" "B1" "B2" "F2" "Bb2"
                      "Eb2" "Eb3" "A2" "D2" "G2" "G3" "C#2" "F#2"
-                     "B2" "B3" "F2" "Bb2" "Eb2" "Eb3" "C#3" "F#3"))
+                     "B1" "B2" "F2" "Bb2" "Eb2" "Eb3" "C#3" "F#2"))
                      
 
 (def c-bass-group (array 
-                    "E2" "F2" "Bb1" "Db2" "F#2" "A3" "D2" "D3"
-                    "D2" "Eb2" "Ab2" "B3" "E2" "G2" "C2" "C3"
+                    "E2" "F2" "Bb1" "Db2" "F#2" "A2" "D2" "D3"
+                    "D2" "Eb2" "Ab2" "B2" "E2" "G2" "C2" "C3"
                     "C2" "Db2" "F#2" "A2" "D2" "F2" "Bb1" "Bb2"
                     "E2" "E2" "F2" "F3" "Bb2" "Bb2" "Eb2" "Eb2"))
 
@@ -194,11 +194,25 @@
 
 ;;start and stop the audio transport
 (defn gs-play []
-  (set! (.-value js/Tone.Transport.bpm) 180)
+  (let [gs-bass-seq (-> (new js/Tone.Sequence
+                          (fn [time note]
+                            (.triggerAttackRelease bass-synth note "4n" time))
+                          gs-bass-group "2n")
+                        (.start 0))] 
+    gs-bass-seq
+    (set! (.-loop gs-bass-seq) 5))
+  (set! (.-value js/Tone.Transport.bpm) 200)
   (.start js/Tone.Transport "+0.2"))
 
 (defn c-play []
-  (set! (.-value js/Tone.Transport.bpm) 200)
+  (let [c-bass-seq (-> (new js/Tone.Sequence
+                         (fn [time note]
+                           (.triggerAttackRelease bass-synth note "4n" time))
+                         c-bass-group "2n")
+                       (.start 0))] 
+    c-bass-seq
+    (set! (.-loop c-bass-seq) 5))
+  (set! (.-value js/Tone.Transport.bpm) 240)
   (.start js/Tone.Transport "+0.2"))
 
 
@@ -259,7 +273,10 @@
    [:b {:class "btn btn-default"
         :on-click c-generate-pattern}
     "Generate"]
-   [c-button]])
+   [c-button]
+   [:br]
+   [:br]
+   [:a {:href "https://github.com/vossd/gs-pattern-gen"} "code"]])
 
 
 (r/render-component [content] (.querySelector js/document "#content"))
