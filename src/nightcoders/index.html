@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>gs-pattern-gen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/simplex/bootstrap.min.css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>  
+    <script src="https://cdn.rawgit.com/tambien/StartAudioContext/master/StartAudioContext.js"></script>
+  </head>
+  <body>
+    <button id="start">On mobile? Click here before you begin</button>    
+    <div id="content"></div>
+    <script src="main.js"></script>  
+    <script>
+      var $start = document.querySelector('#start')     
+      StartAudioContext(Tone.context, $start)
+    </script>      
+  </body>
+</html>
