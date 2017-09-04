@@ -276,6 +276,8 @@
    [c-button]
    [:br]
    [:br]
+   [:p "(Use headphones and Chrome/Firefox for desktop or Safari/Chrome on mobile.)"]
+   [:br]
    [:a {:href "https://github.com/vossd/gs-pattern-gen"} "code"]])
 
 
