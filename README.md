@@ -8,5 +8,5 @@ Made with ClojureScript, Tone.js, and Nightcoders.net.
 
 #### To do:
 
-*Refactor
-*Use rests
+* Refactor
+* Use rests
