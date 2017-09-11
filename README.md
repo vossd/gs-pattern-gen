@@ -9,4 +9,4 @@ Made with ClojureScript, Tone.js, and Nightcoders.net.
 #### To do:
 
 * Refactor
-* Incorporate rests
+* Edit synth envelope 

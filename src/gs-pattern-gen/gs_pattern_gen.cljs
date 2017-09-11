@@ -4,6 +4,7 @@
 
 
 ;;define chords
+;;using :C0 for rests 
 (def b-maj [:B3 :C#4 :D#4 :F#4])
 (def g-maj [:G4 :A4 :B4 :D4])
 (def eb-maj [:Eb4 :F4 :G4 :Bb3])
@@ -14,34 +15,34 @@
 (def d-maj [:D4 :E4 :F#4 :A4])
 (def c-maj [:C4 :D4 :E4 :G4])
 
-(def d-dom [:D4 :E4 :F#4 :A4 :C4])
-(def bb-dom [:Bb3 :C4 :D4 :F4 :Ab4])
-(def fis-dom [:F#4 :G#4 :A#3 :C#4 :E4])
-(def f-dom [:F4 :G4 :A4 :C4 :Eb4])
-(def eb-dom [:Eb4 :F4 :G4 :Bb4 :Db4])
-(def db-dom [:Db4 :Eb4 :F4 :Ab4 :B3])
-(def b-dom [:B3 :C#4 :D#4 :F#4 :A4])
-(def a-dom [:A4 :B3 :C#4 :E4 :G4])
-(def g-dom [:G4 :A4 :B3 :D4 :F4])
+(def d-dom [:D4 :E4 :F#4 :A4 :C4 :C0])
+(def bb-dom [:Bb3 :C4 :D4 :F4 :Ab4 :C0])
+(def fis-dom [:F#4 :G#4 :A#3 :C#4 :E4 :C0])
+(def f-dom [:F4 :G4 :A4 :C4 :Eb4 :C0])
+(def eb-dom [:Eb4 :F4 :G4 :Bb4 :Db4 :C0])
+(def db-dom [:Db4 :Eb4 :F4 :Ab4 :B3 :C0])
+(def b-dom [:B3 :C#4 :D#4 :F#4 :A4 :C0])
+(def a-dom [:A4 :B3 :C#4 :E4 :G4 :C0])
+(def g-dom [:G4 :A4 :B3 :D4 :F4 :C0])
 
 (def a-min7 [:A3 :C4 :E4 :G4])
 (def f-min7 [:F4 :Ab4 :C4 :Eb4])
 (def cis-min7 [:C#4 :E4 :G#4 :B3])
 
-(def eb-maj7 [:Eb4 :F4 :G4 :Bb3 :C4 :D4])
-(def b-maj7 [:B3 :C#4 :D#4 :F#4 :G#4 :A#4])
-(def g-maj7 [:G4 :A4 :B4 :D4 :E4 :F#4])
-(def d-maj7 [:D4 :E4 :F#4 :A4 :B4 :C#4])
-(def c-maj7 [:C4 :D4 :E4 :G4 :A4 :B4])
-(def bb-maj7 [:Bb3 :C4 :D4 :F4 :G4 :A4])
+(def eb-maj7 [:Eb4 :F4 :G4 :Bb3 :C4 :D4 :C0])
+(def b-maj7 [:B3 :C#4 :D#4 :F#4 :G#4 :A#4 :C0])
+(def g-maj7 [:G4 :A4 :B4 :D4 :E4 :F#4 :C0])
+(def d-maj7 [:D4 :E4 :F#4 :A4 :B4 :C#4 :C0])
+(def c-maj7 [:C4 :D4 :E4 :G4 :A4 :B4 :C0])
+(def bb-maj7 [:Bb3 :C4 :D4 :F4 :G4 :A4 :C0])
 
 (def e-min [:E4 :F#4 :G4 :A4])
 (def d-min [:D4 :E4 :F4 :G4])
 (def c-min [:C4 :D4 :Eb4 :F4])
 
-(def e-dyad [:A4 :C5])
+(def e-dyad [:A4 :C5 :C0])
 (def f-dom7 [:F4 :A4 :C4 :Eb4])
-(def eb-wt [:Eb4 :F4 :G4 :A4 :Db4])
+(def eb-wt [:Eb4 :F4 :G4 :A4 :Db4 :C0])
 
 
 ;;create individual chord patterns
@@ -55,7 +56,7 @@
   (vec (take 4 (shuffle hexad))))
 
 (defn create-from-dyad [dyad]
-  (flatten (concat (repeatedly 4 #(shuffle dyad)))))
+  (flatten (concat (repeatedly 4 #(take 2 (shuffle dyad))))))
 
 
 ;;create giant steps pattern
