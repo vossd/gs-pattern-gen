@@ -62,7 +62,7 @@
 ;;create giant steps pattern
 (defn make-gs-group []
   (let [gs-group
-        (clj->js (flatten (repeatedly 5 #(vec (concat
+        (clj->js (flatten (repeatedly 9 #(vec (concat
                                                 (create-from-tetrad b-maj)
                                                 (create-from-pentad d-dom)
                                                 (create-from-tetrad g-maj)
@@ -101,7 +101,7 @@
 ;;create countdown pattern 
 (defn make-c-group []
   (let [c-group
-        (clj->js (flatten (repeatedly 5 #(vec (concat
+        (clj->js (flatten (repeatedly 9 #(vec (concat
                                                 (create-from-tetrad e-min)
                                                 (create-from-pentad f-dom)
                                                 (create-from-tetrad bb-maj)
@@ -201,7 +201,7 @@
                           gs-bass-group "2n")
                         (.start 0))] 
     gs-bass-seq
-    (set! (.-loop gs-bass-seq) 5))
+    (set! (.-loop gs-bass-seq) 9))
   (set! (.-value js/Tone.Transport.bpm) 200)
   (.start js/Tone.Transport "+0.2"))
 
@@ -212,7 +212,7 @@
                          c-bass-group "2n")
                        (.start 0))] 
     c-bass-seq
-    (set! (.-loop c-bass-seq) 5))
+    (set! (.-loop c-bass-seq) 9))
   (set! (.-value js/Tone.Transport.bpm) 240)
   (.start js/Tone.Transport "+0.2"))
 
@@ -263,14 +263,14 @@
   [:div {:style {:text-align "center"}}
    [:h3 "Chromatic mediant pattern generator"]
    [:br]
-   [:p "Giant Steps"]
+   [:p "Giant Steps (J. Coltrane)"]
    [:b {:class "btn btn-default"
         :on-click gs-generate-pattern}
     "Generate"]
    [gs-button]
    [:br]
    [:br]
-   [:p "Countdown"]
+   [:p "Countdown (J. Coltrane)"]
    [:b {:class "btn btn-default"
         :on-click c-generate-pattern}
     "Generate"]
@@ -279,6 +279,7 @@
    [:br]
    [:p "(Use headphones and Chrome/Firefox for desktop or Safari/Chrome on mobile.)"]
    [:br]
+   [:p "Made with ClojureScript, Tone.js, and Nightcoders.net"]
    [:a {:href "https://github.com/vossd/gs-pattern-gen"} "code"]])
 
 

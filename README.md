@@ -6,7 +6,4 @@ This toy "improvises" a few choruses each on John Coltrane's "Giant Steps" and "
 
 Made with ClojureScript, Tone.js, and Nightcoders.net.
 
-#### To do:
 
-* Refactor
-* Edit synth envelope 
